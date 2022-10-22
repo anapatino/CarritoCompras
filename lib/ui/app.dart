@@ -1,3 +1,4 @@
+import 'package:example/ui/authF/loginF.dart';
 import 'package:example/ui/pages/carrito.dart';
 import 'package:flutter/material.dart';
 import 'package:example/ui/auth/login.dart';
@@ -16,8 +17,9 @@ class App extends StatelessWidget {
         '/login': (context) => const Login(),
         '/productos': (context) => const Productos(),
         '/carrito': (context) => const Carrito(),
+        '/loginF': (context) => const LoginF(),
       },
-      home: const Login(),
+      home: const LoginF(),
     );
   }
 }

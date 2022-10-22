@@ -1,18 +1,19 @@
 import 'package:example/domain/controller/controlUser.dart';
+import 'package:example/domain/controller/controlUserF.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class LoginF extends StatefulWidget {
+  const LoginF({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<LoginF> createState() => _LoginFState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginFState extends State<LoginF> {
   TextEditingController controlUser = TextEditingController();
   TextEditingController controlPassword = TextEditingController();
-  ControlUser controlU = Get.find();
+  ControlerAuthF controlU = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,13 +44,17 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.login)),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   IconButton(
                       onPressed: () {
-                        controlU.update();
                         controlU
-                            .enviarDatos(controlUser.text, controlPassword.text)
+                            .registrarEmail(
+                                controlUser.text, controlPassword.text)
                             .then((value) {
-                          if (controlU.user!.isNotEmpty == true) {
+                          if (controlU.emailF != 'Sin Registro') {
                             Get.offAllNamed('/productos');
                           } else {
                             Get.showSnackbar(const GetSnackBar(
@@ -62,12 +67,6 @@ class _LoginState extends State<Login> {
                           }
                         });
                       },
-                      icon: const Icon(Icons.login)),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  IconButton(
-                      onPressed: () {},
                       icon: const Icon(Icons.app_registration_rounded))
                 ],
               )
